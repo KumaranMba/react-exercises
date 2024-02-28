@@ -1,31 +1,34 @@
-import React, { Component } from 'react';
+import { Component } from "react";
 
-class Hello extends Component{
+class App extends Component{
+  // class component lifecycle
+
+  //It called after the component is render 
+  componentDidMount(){
+    console.log("App mounted");
+  }
+
+  // It will called after the  props or state changes
+  componentDidUpdate(){
+    console.log("App is rerender/update");
+  }
+  
+  componentWillUnmount(){
+    // it will  call when a component is removed from DOM
+    // it will called before the component is removed from the Dom
+    // it will be detach the events  and clean up the data
+    // kindly refer the sir git hub 
+  }
+
   render(){
-    const {name} = this.props
     return(
       <div>
-        <p>
-          Hello {name}!
-        </p>
-      </div>
-    )
-    
-  }
-}
-
-
- class App extends Component {
-  render() {
-    return (
-      <div>
-          <Hello name ="Dinesh"/>
+        <p>Hello World!</p>
       </div>
     )
   }
 }
 
 export default App;
-
 
 
