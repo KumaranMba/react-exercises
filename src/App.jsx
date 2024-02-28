@@ -1,36 +1,22 @@
-// import React from 'react'; //not necessay, from react 17.
+import React from 'react';
 
-
-
-// It is a functional component or stateless component
-// It is just a javascript function
-// It  needs to return JSX (Javascript XML)=> HTML and javascript embeded. 
-
-// function App() {
-//   return (
-//     <div>
-//         Hello world
-//     </div>
-//   )
-// }
-
-// export default App;
-
-// stateless component
-//class components
-
-import { Component } from "react";
-
-class App extends Component{
-  render(){
+  function Hello({name}){
     return(
       <div>
-        <p>Hello World</p>
+        <p>Hello {name}</p>
       </div>
     )
   }
+
+function App() {
+  return (
+    <div>
+    <Hello name="Dinesh"/>
+    </div>
+  )
 }
 
 export default App;
+
 
 
