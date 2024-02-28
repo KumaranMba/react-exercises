@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 class Hello extends Component{
   render(){
+    const {name} = this.props
     return(
       <div>
         <p>
-          Hello World!
+          Hello {name}!
         </p>
       </div>
     )
@@ -18,7 +19,7 @@ class Hello extends Component{
   render() {
     return (
       <div>
-          <Hello/>
+          <Hello name ="Dinesh"/>
       </div>
     )
   }
