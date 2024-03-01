@@ -4,14 +4,17 @@ function App() {
   // using useState and rendering the state condition.
   const [count,setCount]= useState(0);
  
-  setTimeout(()=>{
+  function plusButtonClick(){
     setCount(count+1);
-  },1000);
+  }
 
-  console.log("Render",count);
+  
 
   return (
-    <div>App</div>
+    <div>
+    <p>Counter:{count}</p>
+    <button onClick={plusButtonClick}>plus</button>
+    </div>
   )
 }
 
