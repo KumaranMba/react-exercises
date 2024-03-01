@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 
-function Display({count}){
-  return(
-    <>
-      <p>Counter:{count}</p>
-    </>
-  )
-}
+import Display from './component/display';
 
 function App() {
   // using useState and rendering the state condition.
