@@ -7,13 +7,20 @@ function App() {
   function plusButtonClick(){
     setCount(count+1);
   }
-
+function minusButtonClick(){
+  setCount(count-1);
+}
+function zeroButtonClick(){
+  setCount(0);
+}
   
 
   return (
     <div>
     <p>Counter:{count}</p>
     <button onClick={plusButtonClick}>plus</button>
+    <button onClick={minusButtonClick}>Minus</button>
+    <button onClick={zeroButtonClick}>Zero</button>
     </div>
   )
 }
