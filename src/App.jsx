@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 
+function Display({count}){
+  return(
+    <>
+      <p>Counter:{count}</p>
+    </>
+  )
+}
+
 function App() {
   // using useState and rendering the state condition.
   const [count,setCount]= useState(0);
@@ -17,7 +25,7 @@ function zeroButtonClick(){
 
   return (
     <div>
-    <p>Counter:{count}</p>
+    <Display count={count}/>
     <button onClick={plusButtonClick}>plus</button>
     <button onClick={minusButtonClick}>Minus</button>
     <button onClick={zeroButtonClick}>Zero</button>
