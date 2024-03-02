@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 
 import Display from './component/display';
 
+function Button({handleClick,names}){
+  return(
+    
+      <button onClick={handleClick}>{names}</button>
+    
+  );
+}
+
 function App() {
   // using useState and rendering the state condition.
   const [count,setCount]= useState(0);
@@ -15,14 +23,13 @@ function minusButtonClick(){
 function zeroButtonClick(){
   setCount(0);
 }
-  
-
+ 
   return (
     <div>
     <Display count={count}/>
-    <button onClick={plusButtonClick}>plus</button>
-    <button onClick={minusButtonClick}>Minus</button>
-    <button onClick={zeroButtonClick}>Zero</button>
+    <Button handleClick={plusButtonClick} names="plus"/>
+    <Button handleClick={minusButtonClick} names="minus"/>
+    <Button handleClick={zeroButtonClick} names="reset"/>
     </div>
   )
 }
