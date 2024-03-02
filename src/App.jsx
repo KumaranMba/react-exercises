@@ -1,22 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
+function GrandChild({data}){
+  console.log(`From Grand Child:${data}`);
+  return(
+    <div>
+        <h5>Grand Child</h5>
+        
+    </div>
+  )
+}
+
+function ChildComponent({data}){
+  return(
+    <div>
+      <h5>Child Component</h5>
+      <GrandChild data ={data}/>
+    </div>
+  )
+}
 
 function App() {
-
-  const[count,setCount] = useState(0);
-
-  useEffect(()=>{
-    document.title =`count:${count}`
-  },[count])
-
-  const Increase = () =>{
-    setCount(count+1);
-  }
-
-  
+  const parentComponent = `Hello from parent`;
   return (
     <div>
-    <p>Count:{count}</p>
-      <button onClick={Increase}>IncreaseCount</button>
+      <h5>Parent  Component</h5>
+      <ChildComponent data ={parentComponent}/>
     </div>
   )
 }
