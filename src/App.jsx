@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-
-import Display from './component/display';
-import Button from "./component/Button";
-
+import React, { useEffect, useState } from 'react';
 
 function App() {
-  // using useState and rendering the state condition.
-  const [count,setCount]= useState(0);
- 
-  function plusButtonClick(){
-    setCount(count+1);
-  }
-function minusButtonClick(){
-  setCount(count-1);
-}
-function zeroButtonClick(){
-  setCount(0);
-}
- 
+ const [posts,setPosts] = useState(null);
+ console.log(posts);
+
+  const fetchData = async () =>{
+   let response = await fetch(`https://jsonplaceholder.typicode.com/posts`)
+    let data = await response.json();
+    setPosts(data);
+   }
+  
+  useEffect(()=>{
+     fetchData();
+  },[])
+
   return (
     <div>
-    <Display count={count}/>
-    <Button handleClick={plusButtonClick} names="plus"/>
-    <Button handleClick={minusButtonClick} names="minus"/>
-    <Button handleClick={zeroButtonClick} names="reset"/>
+    <h1>API Notes</h1>
+    <ul>
+      {
+        posts? (posts.map((post)=>(
+          <li key ={post.id}><b>Title:</b>{post.title}<br/><b>Body:</b>{post.body}</li>
+
+         
+          ))):(<p>fetching data...</p>)
+      }
+    </ul>
     </div>
   )
 }
 
 export default App;
-
-
 
 
