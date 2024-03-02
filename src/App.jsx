@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 
 import Display from './component/display';
+import Button from "./component/Button";
 
-function Button({handleClick,names}){
-  return(
-    
-      <button onClick={handleClick}>{names}</button>
-    
-  );
-}
 
 function App() {
   // using useState and rendering the state condition.
