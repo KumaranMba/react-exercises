@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function ChildComponent({receivingData}){
 
   let data ="Hi,This is from Child Component"
+  
 
  const buttonClick = () =>{
   receivingData(data);
@@ -19,8 +20,8 @@ function App() {
 
   const [dataFromChild,setDataFromChild] = useState('');
 
-    const ReceivingFromChild = (data) =>{
-      setDataFromChild(data);
+    const ReceivingFromChild = (notes) =>{
+      setDataFromChild(notes);
     }
 
   return (
