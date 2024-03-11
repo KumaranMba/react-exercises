@@ -1,35 +1,39 @@
 import React, { useState } from 'react';
-
-function ChildComponent({receivingData}){
-
-  let data ="Hi,This is from Child Component"
-  
-
- const buttonClick = () =>{
-  receivingData(data);
- }
-
-  return(
-    <div>
-    <button onClick={buttonClick}>pressPropsToParent</button>
-    </div>
-  )
-}
+import Home from "./assets/Home";
+import Notes from "./assets/Notes";
+import Users from "./assets/Users";
 
 function App() {
 
-  const [dataFromChild,setDataFromChild] = useState('');
+  const [page,setPage] = useState("home");
 
-    const ReceivingFromChild = (notes) =>{
-      setDataFromChild(notes);
-    }
+  const padding = {
+    padding:"10px"
+  }
+
+  const content = ()=>{
+      if(page ==="home"){
+        return<Home/>
+      }else if(page ==="notes"){
+        return<Notes/>
+      }else if(page ==="users"){
+        return<Users/>
+      }
+  }
+
+  const topage =(page)=> (event) =>{
+    event.preventDefault();
+        setPage(page);
+  }
 
   return (
     <div>
-      <h1>Hello World!</h1>
-      <p>This is a parent Component</p>
-      <p>`Receiving from the Child:{dataFromChild}`</p>
-      <ChildComponent receivingData ={ReceivingFromChild}/>
+    <div>
+    <a href='' style={padding} onClick={topage('home')}>Home</a>
+    <a href='' style={padding} onClick={topage('notes')}>Notes</a>
+    <a href='' style={padding} onClick={topage('users')}>Users</a>
+    {content()}
+    </div>
     </div>
   )
 }
