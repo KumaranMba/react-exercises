@@ -1,40 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link,Route,BrowserRouter as Router, Routes } from 'react-router-dom';
 import Home from "./assets/Home";
 import Notes from "./assets/Notes";
 import Users from "./assets/Users";
 
+
 function App() {
-
-  const [page,setPage] = useState("home");
-
   const padding = {
     padding:"10px"
   }
 
-  const content = ()=>{
-      if(page ==="home"){
-        return<Home/>
-      }else if(page ==="notes"){
-        return<Notes/>
-      }else if(page ==="users"){
-        return<Users/>
-      }
-  }
-
-  const topage =(page)=> (event) =>{
-    event.preventDefault();
-        setPage(page);
-  }
-
+  
   return (
-    <div>
-    <div>
-    <a href='' style={padding} onClick={topage('home')}>Home</a>
-    <a href='' style={padding} onClick={topage('notes')}>Notes</a>
-    <a href='' style={padding} onClick={topage('users')}>Users</a>
-    {content()}
-    </div>
-    </div>
+    <Router>
+      <div>
+        <Link to="/" style={padding}>Home</Link>
+        <Link to="/Users" style={padding}>Users</Link>
+        <Link to="/Notes" style={padding}>Notes</Link>
+      </div>
+      <Routes>
+        <Route path ="/" element= {<Home/>} />
+        <Route path ="/Users" element = {<Users/>} />
+        <Route path ="/Notes" element ={<Notes/>} />
+      </Routes>
+      <div>
+        <i>Note Application</i>
+      </div>
+    </Router>
+
+    
   )
 }
 
