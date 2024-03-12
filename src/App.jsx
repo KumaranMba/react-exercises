@@ -1,33 +1,30 @@
 import React from 'react';
 import { Link,Route,BrowserRouter as Router, Routes } from 'react-router-dom';
-import Home from "./assets/Home";
-import Notes from "./assets/Notes";
-import Users from "./assets/Users";
-import Note  from "./assets/Note";
-
+import Home from './assets/Components/Home';
+import Notes from './assets/Components/notes';
+import About from './assets/Components/About';
+import Note from './assets/Components/Note';
 
 function App({notes}) {
-  const padding = {
-    padding:"10px"
+  const styles ={
+    padding:10,
+    margin:5
   }
-
-  
   return (
     <Router>
       <div>
-        <Link to="/" style={padding}>Home</Link>
-        <Link to="/Users" style={padding}>Users</Link>
-        <Link to="/Notes" style={padding}>Notes</Link>
+        <Link to="/" style={styles}>home</Link>
+        <Link to={"/notes"} style={styles}>notes</Link>
+        <Link to={"/about"} style={styles}>about</Link>
       </div>
       <Routes>
-        <Route path ="/" element= {<Home/>} />
-        <Route path ="/Users" element = {<Users/>} />
-        <Route path ="/Notes" element ={<Notes notes={notes}/>} />
-        <Route path="/Notes/:noteid" element={<Note notes={notes}/>}/>
+        <Route path={"/"} element={<Home/>}/>
+        <Route path={"/notes"} element={<Notes notes={notes}/>}/>
+        <Route path={"/about"} element={<About/>}/>
+        <Route path={"/notes/:noteid"} element={<Note notes={notes}/>}/>
+
       </Routes>
     </Router>
-
-    
   )
 }
 
