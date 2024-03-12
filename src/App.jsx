@@ -5,7 +5,7 @@ import Notes from "./assets/Notes";
 import Users from "./assets/Users";
 
 
-function App() {
+function App({notes}) {
   const padding = {
     padding:"10px"
   }
@@ -21,11 +21,8 @@ function App() {
       <Routes>
         <Route path ="/" element= {<Home/>} />
         <Route path ="/Users" element = {<Users/>} />
-        <Route path ="/Notes" element ={<Notes/>} />
+        <Route path ="/Notes" element ={<Notes notes={notes}/>} />
       </Routes>
-      <div>
-        <i>Note Application</i>
-      </div>
     </Router>
 
     
