@@ -3,6 +3,7 @@ import { Link,Route,BrowserRouter as Router, Routes } from 'react-router-dom';
 import Home from "./assets/Home";
 import Notes from "./assets/Notes";
 import Users from "./assets/Users";
+import Note  from "./assets/Note";
 
 
 function App({notes}) {
@@ -22,6 +23,7 @@ function App({notes}) {
         <Route path ="/" element= {<Home/>} />
         <Route path ="/Users" element = {<Users/>} />
         <Route path ="/Notes" element ={<Notes notes={notes}/>} />
+        <Route path="/Notes/:noteid" element={<Note notes={notes}/>}/>
       </Routes>
     </Router>
 
