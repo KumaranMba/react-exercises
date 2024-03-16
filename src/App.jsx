@@ -1,22 +1,24 @@
-import React, { createContext, useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
+import { createContext } from 'react';
 import Children from './Components/Children';
 
-const Messagecontext = createContext();
+const ValueContext =  createContext();
 
 function App() {
-    const [message,setMessage] = useState('Hello grandChild');
-    const [coins,setCoins] = useState([1,2,3,4,5]);
+
+  const [info,setInfo] = useState('Hi this is the info from the parent');
+  const[number,setNumber] = useState([,10,25,50,78,98]);
 
   return (
     <div>
-         <h1>Grand Parent passing data as a props</h1>
-         <Messagecontext.Provider value={{message,coins}}>
-            <Children/>
-         </Messagecontext.Provider>
-         
-         <hr></hr>
+        <h1>Parent component</h1>
+        <p>passing data to child component using  context</p>
+        <ValueContext.Provider value ={{info,number}}>
+          <Children/>
+        </ValueContext.Provider>
     </div>
   )
 }
 
-export {App as default,Messagecontext};
+export {App as default,ValueContext};

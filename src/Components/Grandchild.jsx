@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
-import { Messagecontext } from '../App';
+import { ValueContext } from '../App';
 
 function Grandchild() {
+  const {info,number} = useContext(ValueContext);
+  const sum = () =>{  
+         return number.reduce((prev,curr)=>(prev+curr),0);
+  }
+  
 
-  const{message,coins} = useContext(Messagecontext);
-
-    const sum = () =>{
-     return coins.reduce((prev,curr)=>(prev+curr),0)
-    }
   return (
     <div>
-      <h1> Grandchild</h1>
-      <p>Receiving message from the Grand Parent: {message} </p>
-      <p>Receiving cumulative:{sum()}</p>     
+        <h1>Grandchild</h1>
+        <p>Reciving from the Parent:{info}</p>
+        <p>Total Coins:{sum()}</p>
     </div>
   )
 }
