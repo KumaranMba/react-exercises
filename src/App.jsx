@@ -1,24 +1,19 @@
-import React from 'react';
-import { useState } from 'react';
-import { createContext } from 'react';
-import Children from './Components/Children';
+import React, { createContext, useState } from 'react';
+import Profile from './Components/Profile';
 
-const ValueContext =  createContext();
+const Changename = createContext();
 
 function App() {
-
-  const [info,setInfo] = useState('Hi this is the info from the parent');
-  const[number,setNumber] = useState([,10,25,50,78,98]);
+const [profileName,setProfileName] = useState('');
 
   return (
     <div>
-        <h1>Parent component</h1>
-        <p>passing data to child component using  context</p>
-        <ValueContext.Provider value ={{info,number}}>
-          <Children/>
-        </ValueContext.Provider>
+          <h1>App component</h1>
+          <Changename.Provider value={{profileName, setProfileName}} >
+            <Profile/>
+          </Changename.Provider>
     </div>
   )
 }
 
-export {App as default,ValueContext};
+export {App as default,Changename};
