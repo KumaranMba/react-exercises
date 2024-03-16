@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Messagecontext } from '../App';
 
-function Grandchild({message,coins}) {
+function Grandchild() {
+
+  const{message,coins} = useContext(Messagecontext);
+
     const sum = () =>{
      return coins.reduce((prev,curr)=>(prev+curr),0)
     }
