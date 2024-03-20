@@ -2,21 +2,69 @@ import React from 'react';
 import { useRef } from 'react';
 
 function App() {
-  const bodyRef = useRef(document.body);
 
-  const changeColor = ()=>{
+  const rows = useRef();
 
-    const colors = ["green","blue","red","white","grey","pink","whilet","brown","black","purple"];
-
-    const randomNumber = colors[Math.floor(Math.random()*10)];
-    console.log(randomNumber);
-    bodyRef.current.style.backgroundColor=randomNumber;
-  }
+ const changeBackground =()=>{
+     const rowsRef = rows.current.querySelectorAll(" tbody tr");
+     rowsRef.forEach((row,index)=>{
+      console.log(index);
+        if(index % 2 === 0){
+          row.style.backgroundColor="green";
+        }
+     })
+ }
 
   return (
     <div>
-    <h1>Button color change using useRef</h1>
-    <button  onClick={changeColor}>click to  change button color</button>
+          <table ref={rows}>
+              <thead>
+                 <tr>
+                  <th>SINO</th>
+                  <th>Name</th>
+                  <th>Age</th>
+                 </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Dinesh</td>
+                  <td>25</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Kumaran</td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Kumaran</td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Kumaran</td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Kumaran</td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Kumaran</td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Kumaran</td>
+                  <td>30</td>
+                </tr>
+              </tbody>
+          </table>
+
+          <button onClick={changeBackground}>change tr background</button>
     </div>
   )
 }
