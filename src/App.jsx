@@ -1,33 +1,22 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { useRef } from 'react';
 
-// useRef
-// Its a react's build in feature.
-// To create and manage reference of DOM elements.
-
-
-
 function App() {
-  const inputRef = useRef(null); // creating a reference object.
+  const buttonRef = useRef(null);
 
-  const handleinput =() =>{
-    // console.log(inputRef.current.value);
-    // inputRef.current.value ="dinesh";
-    // inputRef.current.focus();
+  const changeColor = ()=>{
+
+    const colors = ["green","blue","red","white","grey","pink","whilet","brown","black","purple"];
+
+    const randomNumber = colors[Math.floor(Math.random()*10)];
+    console.log(randomNumber);
+    buttonRef.current.style.backgroundColor=randomNumber;
   }
-
-  // Another  way to use the function call at the time of loading
-  useEffect(()=>{
-    handleinput();
-  },[]);
 
   return (
     <div>
-     <input type="text" placeholder='type a message' ref={inputRef} />
-     <button>Focus input</button>
-
-
+    <h1>Button color change using useRef</h1>
+    <button ref = {buttonRef} onClick={changeColor}>click to  change button color</button>
     </div>
   )
 }
