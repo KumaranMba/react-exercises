@@ -1,38 +1,34 @@
 import React from 'react';
-import { useState } from 'react';
+import { useReducer } from 'react';
+ 
+// create the initial state
+
+const initialState = {
+  value:" ",
+}
+
+//define reducer
+
+const inputChange = (state,action)=>{
+  switch(action.type){
+      case"change":
+        return{value:action.payload};
+        
+      default:
+        return state;
+  }
+}
+
+
 
 function App() {
 
-  const[count,setCount] = useState(0);
-  const[clickHistory,setClickHistory] = useState([]);
-
-  const Increment =() =>{
-    setCount(count+1);
-    setClickHistory(clickHistory.concat('Incr'));
-  }
-  
-  const Decrement =() =>{
-    if(count > 0){
-      setCount(count-1);
-      setClickHistory(clickHistory.concat('Decr'));
-    }
-  }
-
-  const Reset = ()=>{
-    setCount(0);
-    setClickHistory(clickHistory.concat('Reset'));
-  }
+  const [state,discharge] = useReducer(inputChange,initialState);
 
   return (
     <div>
-        <p>Count:{count}</p>
-        <button onClick={Increment}>Increment</button>
-        <button onClick={Decrement}>Decrement</button>
-        <button onClick={Reset}>Reset</button>
-
-        <h5>Track user Interaction history</h5>
-        <p>{clickHistory.join(' ')}</p>
-
+         <input type='text' placeholder='type any text' onChange={(e)=>discharge({type:"change",payload:e.target.value})}/>
+         <p>value:{state.value}</p>
     </div>
   )
 }
