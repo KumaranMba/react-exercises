@@ -6,8 +6,27 @@ function App(props) {
   
   // const {notes} = props;
   const newNoteContentRef = useRef(null);
-  const[newNoteasinput,setnewNoteasInput] = useState(' ');
-  console.log(newNoteasinput);
+  const[newNoteasinput,setNewNoteasInput] = useState(' ');
+  const[newNoteimportant,setNewNoteimportant] = useState(' ');
+  
+
+  const addNotes = (event) =>{
+    event.preventDefault();
+    let newNotes = {
+      id:notes.length +1,
+      content:newNoteasinput,
+      important:newNoteimportant === "True", 
+    }
+    
+    setNotes(notes.concat(newNotes));
+    setNewNoteasInput(' ');
+    setNewNoteimportant(' ');
+
+    
+    newNoteContentRef.current.focus();
+
+
+  }
 
   return (
     <div> 
@@ -19,17 +38,26 @@ function App(props) {
           })}</ul>
           <hr></hr>
           <h1>Add a content</h1>
-          <form>
+          <form onSubmit={addNotes}>
             <label htmlFor="newNote">
               Content: &nbsp;&nbsp;&nbsp;
-            </label>
-            <input id='newNote' 
+              <input id='newNote' 
             type='text' 
             placeholder='Enter a content' 
             ref={newNoteContentRef}
             value={newNoteasinput}
-            onChange={e=> setnewNoteasInput(e.target.value)}
-            />
+            onChange={e=> setNewNoteasInput(e.target.value)}/>
+            </label>
+            <br></br>
+            <br></br>
+            <label>Is Important:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <select value={newNoteimportant} onChange={e => setNewNoteimportant(e.target.value)}>
+              <option disabled >----Select----</option>
+              <option>True</option>
+              <option>False</option>
+            </select><br></br>
+            <br></br>
+            <button type="submit">Add New Notes</button>
           </form>
 
     </div>
