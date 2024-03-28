@@ -6,32 +6,81 @@ function App(props) {
   
   // const {notes} = props;
   const newNoteContentRef = useRef(null);
-  const[newNoteasinput,setNewNoteasInput] = useState(' ');
-  const[newNoteimportant,setNewNoteimportant] = useState(' ');
-  
+  const[newNoteasinput,setNewNoteasInput] = useState('');
+  const[newNoteimportant,setNewNoteimportant] = useState('');
+  const[showStatus,setShowStatus] = useState('all')
 
   const addNotes = (event) =>{
     event.preventDefault();
+
     let newNotes = {
       id:notes.length +1,
       content:newNoteasinput,
-      important:newNoteimportant === "True", 
+      important:newNoteimportant === "true", 
     }
     
     setNotes(notes.concat(newNotes));
+
     setNewNoteasInput(' ');
     setNewNoteimportant(' ');
 
-    
+
     newNoteContentRef.current.focus();
 
 
   }
 
+  const handleStatusChange = (e) =>{
+    setShowStatus(e.target.value);
+  }
+
+  const filternotes = (notes,showStatus) =>{
+      switch(showStatus){
+        case "all":
+          return notes;
+
+        case "imp":
+          return notes.filter(note=> note.important === true);
+        
+        case "notimp":
+          return notes.filter(note=> note.important === false);
+      }
+  }
+
+  const notesFiltered = filternotes(notes,showStatus)
   return (
     <div> 
           <h1>Notes</h1>
-        <ul> {notes.map((note)=>
+
+          <label>
+            <input 
+            type="radio"
+            name="filter"
+            value="all"
+            onChange={handleStatusChange}
+            checked= {showStatus === "all"}
+             />All Notes
+          </label>
+
+          <label>
+            <input 
+            type="radio"
+            name="filter"
+            value="imp" 
+            onChange={handleStatusChange}
+            />Important Notes
+          </label>
+
+          <label>
+            <input type='radio'
+              name="filter"
+              value="notimp"
+              onChange={handleStatusChange}
+            />Not-Important Notes
+          </label>
+
+        <ul> {
+          notesFiltered.map((note)=>
         {
           return<li key= {note.id}>{note.content}</li>
 
@@ -39,7 +88,8 @@ function App(props) {
           <hr></hr>
           <h1>Add a content</h1>
           <form onSubmit={addNotes}>
-            <label htmlFor="newNote">
+            <label
+             htmlFor="newNote">
               Content: &nbsp;&nbsp;&nbsp;
               <input id='newNote' 
             type='text' 
@@ -53,8 +103,8 @@ function App(props) {
             <label>Is Important:&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <select value={newNoteimportant} onChange={e => setNewNoteimportant(e.target.value)}>
               <option disabled >----Select----</option>
-              <option>True</option>
-              <option>False</option>
+              <option value={true}>true</option>
+              <option value={false}>false</option>
             </select><br></br>
             <br></br>
             <button type="submit">Add New Notes</button>
