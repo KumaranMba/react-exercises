@@ -7,7 +7,7 @@ function App(props) {
   // const {notes} = props;
   const newNoteContentRef = useRef(null);
   const[newNoteasinput,setNewNoteasInput] = useState('');
-  const[newNoteimportant,setNewNoteimportant] = useState('');
+  const[newNoteimportant,setNewNoteimportant] = useState('true');
   const[showStatus,setShowStatus] = useState('all')
 
   const addNotes = (event) =>{
@@ -103,8 +103,8 @@ function App(props) {
             <label>Is Important:&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <select value={newNoteimportant} onChange={e => setNewNoteimportant(e.target.value)}>
               <option disabled >----Select----</option>
-              <option value={true}>true</option>
-              <option value={false}>false</option>
+              <option value='true'>true</option>
+              <option value='false'>false</option>
             </select><br></br>
             <br></br>
             <button type="submit">Add New Notes</button>
